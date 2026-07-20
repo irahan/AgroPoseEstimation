@@ -15,7 +15,9 @@ class VideoProcessor:
         self.analyzer = PostureAnalyzer(fps=15)
         
         self.csv_path = os.path.join(self.output_dir, 'results.csv')
-        # Inicializar CSV
+
+    def initialize_csv(self):
+        """Inicializa el archivo CSV con los encabezados."""
         with open(self.csv_path, mode='w', newline='') as f:
             writer = csv.writer(f)
             writer.writerow(['Frame', 'Back_Angle', 'Neck_Angle', 'Knee_Angle', 'Time_Bad_Posture', 'Risk_Score', 'Status'])

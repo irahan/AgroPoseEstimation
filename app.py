@@ -22,7 +22,8 @@ model_choice = 'n' if 'n' in model_size else 's'
 # Botón para descargar resultados
 if os.path.exists("outputs/results.csv"):
     with open("outputs/results.csv", "rb") as f:
-        st.sidebar.download_button("Descargar CSV de Resultados", f, file_name="resultados_postura.csv")
+        file_content = f.read()
+    st.sidebar.download_button("Descargar CSV de Resultados", file_content, file_name="resultados_postura.csv", mime="text/csv")
 
 # --- PROCESAMIENTO ---
 processor = VideoProcessor(model_size=model_choice)
@@ -90,6 +91,7 @@ def process_stream(cap):
 
 if source_type == "Cámara Web":
     if st.button("Iniciar Cámara"):
+        processor.initialize_csv()
         cap = cv2.VideoCapture(0)
         process_stream(cap)
 
@@ -101,6 +103,7 @@ elif source_type == "Video":
         tfile.close()
         
         if st.button("Procesar Video"):
+            processor.initialize_csv()
             cap = cv2.VideoCapture(tfile.name)
             process_stream(cap)
 
@@ -113,6 +116,7 @@ elif source_type == "Imagen":
         
         frame = cv2.imread(tfile.name)
         if frame is not None:
+            processor.initialize_csv()
             annotated_frame, metrics = processor.process_frame(frame, 0)
         else:
             st.error("No se pudo leer la imagen.")
