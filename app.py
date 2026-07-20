@@ -129,3 +129,7 @@ elif source_type == "Imagen":
                 st.write(f"Ángulo Espalda: {metrics['back_angle']}°")
                 st.write(f"Ángulo Cuello: {metrics['neck_angle']}°")
                 st.write(f"Ángulo Rodilla: {metrics['knee_angle']}°")
+
+# --- FOOTER / DERECHOS DE AUTOR ---
+st.markdown("---")
+st.markdown("<p style='text-align: center; color: gray;'>Derechos de autor &copy; Dr. Irahan Otoniel José Guzmán, Ing. Francisco Parra, Dr. Enrique Santamaria</p>", unsafe_allow_html=True)
