@@ -132,4 +132,16 @@ elif source_type == "Imagen":
 
 # --- FOOTER / DERECHOS DE AUTOR ---
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: gray;'>Derechos de autor &copy; Dr. Irahan Otoniel José Guzmán, Ing. Francisco Parra, Dr. Enrique Santamaria</p>", unsafe_allow_html=True)
+st.markdown("""
+<div style='text-align: center; color: gray;'>
+    <p><strong>Derechos de autor &copy;</strong></p>
+</div>
+<div style='display: flex; justify-content: center; color: gray;'>
+    <ul>
+        <li>Dr. Irahan Otoniel José Guzmán</li>
+        <li>Ing. Francisco Javier Parra Sanchez</li>
+        <li>Dr. Luis Enrique Garcia Santamaria</li>
+        <li>Dr. Gregorio Fernandez Lambert</li>   
+    </ul>
+</div>
+""", unsafe_allow_html=True)
