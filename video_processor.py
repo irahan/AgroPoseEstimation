@@ -64,14 +64,14 @@ class VideoProcessor:
         annotated_frame = self.draw_skeleton(frame.copy(), kpts, risk_level)
         
         # Poner textos en la imagen
-        cv2.putText(annotated_frame, f"Estado: {risk_level}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+        cv2.putText(annotated_frame, f"Estado: {risk_level}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
         
         if metrics:
-            cv2.putText(annotated_frame, f"Espalda: {metrics['back_angle']} deg", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+            cv2.putText(annotated_frame, f"Espalda: {metrics['back_angle']} deg", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
         else:
-            cv2.putText(annotated_frame, "Espalda: N/A", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+            cv2.putText(annotated_frame, "Espalda: N/A", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
             
-        cv2.putText(annotated_frame, recommendation, (10, 90), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 165, 255), 2)
+        cv2.putText(annotated_frame, recommendation, (10, 90), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
         
         # Guardar en CSV
         with open(self.csv_path, mode='a', newline='') as f:
