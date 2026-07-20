@@ -65,13 +65,18 @@ class VideoProcessor:
         
         # Poner textos en la imagen
         cv2.putText(annotated_frame, f"Estado: {risk_level}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
-        cv2.putText(annotated_frame, f"Espalda: {metrics['back_angle']} deg", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+        
+        if metrics:
+            cv2.putText(annotated_frame, f"Espalda: {metrics['back_angle']} deg", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+        else:
+            cv2.putText(annotated_frame, "Espalda: N/A", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+            
         cv2.putText(annotated_frame, recommendation, (10, 90), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 165, 255), 2)
         
         # Guardar en CSV
         with open(self.csv_path, mode='a', newline='') as f:
             writer = csv.writer(f)
-            writer.writerow([frame_count, metrics['back_angle'], metrics['neck_angle'], metrics['knee_angle'], 
-                             metrics['time_in_bad_posture'], risk_score, risk_level])
+            writer.writerow([frame_count, metrics.get('back_angle', ''), metrics.get('neck_angle', ''), metrics.get('knee_angle', ''), 
+                             metrics.get('time_in_bad_posture', ''), risk_score, risk_level])
                              
         return annotated_frame, metrics
